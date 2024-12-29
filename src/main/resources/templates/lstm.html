@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>LSTM Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1A1B25;
+            color: white;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .boja{
+            color: #ff3e3e;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background-color: #1A1B25;
+            color: #FFFFFF;
+            width: 100%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+
+
+        table {
+            background-color: white;
+            color: black;
+            margin: 20px auto;
+            border-collapse: collapse;
+            display: block;
+            width: 14%;
+
+        }
+
+
+        table thead th, iframe tbody td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #ff3e3e;
+            color: white;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 90%;
+            height: auto;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+<h1 class="boja">LSTM Prediction</h1>
+
+
+<div>
+    <h2>Graphs</h2>
+    <div th:each="plotPath : ${plotPaths}">
+        <img th:src="@{${plotPath}}" alt="Graph" style="max-width: 100%; height: auto;">
+    </div>
+</div>
+
+
+<div>
+    <h2>Forecast for Next 30 Days</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Forecasted Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="row : ${forecastData}">
+            <td th:text="${row['Date']}"></td>
+            <td th:text="${row['Forecasted Price']}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

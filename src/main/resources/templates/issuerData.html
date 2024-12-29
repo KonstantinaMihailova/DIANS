@@ -231,7 +231,7 @@
   <div class="chart-links">
     <a href="analysis/generate" id="technical-analysis-link">Technical analysis</a>
     <a href="/analyze">Sentiment analysis</a>
-    <a href="/lstm-prediction">LSTM prediction</a>
+    <a href="/lstm/prediction" id="lstm-link">LSTM prediction</a>
   </div>
 
   <canvas id="myChart" width="400" height="100"></canvas>
@@ -259,16 +259,19 @@
     Plotly.newPlot('plotlyChart', data, layout);
 
 
-    function updateTechnicalAnalysisLink() {
+    function  updateLSTMLink() {
       var selectedIssuer = document.getElementById('issuer').value;
-      var link = document.getElementById('technical-analysis-link');
+      var link1 = document.getElementById('technical-analysis-link');
+      var link2 = document.getElementById('lstm-link');
 
       if (selectedIssuer) {
-        link.href = 'analysis/generate?issuer=' + encodeURIComponent(selectedIssuer);
+        link2.href = 'lstm/prediction?issuer=' + encodeURIComponent(selectedIssuer);
+        link1.href = 'analysis/generate?issuer=' + encodeURIComponent(selectedIssuer);
       } else {
-        link.href = '/analysis/generate';
+        link2.href = '/lstm/prediction';
       }
     }
+
 
   </script>
 </div>
@@ -289,7 +292,7 @@
     <h1>STOCK MARKET</h1>
     <form action="/filter" method="post">
       <label for="issuer">Choose issuer:</label>
-      <select name="issuer" id="issuer" required onchange="updateTechnicalAnalysisLink()">
+      <select name="issuer" id="issuer" required onchange="updateLSTMLink()" >
         <option th:each="issuer : ${issuers}" th:value="${issuer}" th:text="${issuer}"></option>
       </select>
       <button type="submit">Submit</button>
