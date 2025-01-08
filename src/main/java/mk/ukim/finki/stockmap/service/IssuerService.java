@@ -22,7 +22,7 @@ public class IssuerService {
     public List<CsvData> readCsvData() {
         List<CsvData> csvDataList = new ArrayList<>();
 
-        try (FileReader reader = new FileReader(Paths.get("D:\\III\\Dians\\StockMap\\src\\main\\java\\stock_data.csv").toFile())) {
+        try (FileReader reader = new FileReader(Paths.get("C:\\Users\\mihai\\Videos\\StockMap\\src\\main\\java\\stock_data.csv").toFile())) {
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader);
 
             for (CSVRecord record : records) {

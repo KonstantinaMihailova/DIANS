@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Analysis Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1A1B25;
+            color: #e8e8e8;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ff3e3e;
+            margin-top: 20px;
+        }
+
+        .intro-text {
+            background-color: #1A1B25;
+            color: #e8e8e8;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #ff3e3e;
+        }
+
+        .classification-report {
+            border: 2px solid #ff3e3e;
+            padding: 20px;
+            margin: 20px auto;
+            width: 30%;
+            background-color: #ffffff;
+            color: #1A1B25;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .classification-report h2 {
+            font-size: 28px;
+            color: #1A1B25;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #1A1B25;
+        }
+
+        table th {
+            background-color: #ff3e3e;
+            color: white;
+        }
+        table tr:nth-child(2) td {
+            display: table-cell;
+        }
+
+        table tr:nth-child(1) td {
+            display: none;
+        }
+
+        table td {
+            background-color: #e8e8e8;
+            color:#1A1B25;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Sentiment Analysis</h1>
+
+<div class="intro-text" style="font-size: 20px">
+    Sentiment analysis in stock market prediction uses NLP to analyze news and social media, classifying sentiment as positive, negative, or neutral. It helps predict stock price movements by identifying trends, with positive sentiment signaling potential gains and negative sentiment suggesting declines.
+</div>
+
+<div class="classification-report">
+    <h2>Classification Report on our NLP</h2>
+    <pre th:text="${classificationReport}"></pre>
+</div>
+
+<h2 style="margin-left: 40px">Recommendations</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Issuer Code</th>
+        <th>Display Name</th>
+        <th>Sentiment</th>
+        <th>Label</th>
+        <th>Recommendation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${csvData}">
+        <td th:text="${row[0]}"></td>
+        <td th:text="${row[1]}"></td>
+        <td th:text="${row[2]}"></td>
+        <td th:text="${row[3]}"></td>
+        <td th:text="${row[4]}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

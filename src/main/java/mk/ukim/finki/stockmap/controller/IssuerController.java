@@ -116,6 +116,17 @@ public class IssuerController {
         return "issuerData";
     }
 
+    @GetMapping("/home")
+    public String loadHomePage() {
+        return "home";
+    }
+
+
+    @GetMapping("/aboutUs")
+    public String loadAboutUsPage() {
+        return "aboutUs";
+    }
+
 }
 
 
